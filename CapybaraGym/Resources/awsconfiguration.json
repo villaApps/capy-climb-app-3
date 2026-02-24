@@ -1,0 +1,41 @@
+{
+    "UserAgent": "aws-amplify-cli/2.0",
+    "Version": "1.0",
+    "IdentityManager": {
+        "Default": {}
+    },
+    "CredentialsProvider": {
+        "CognitoIdentity": {
+            "Default": {
+                "PoolId": "YOUR_COGNITO_IDENTITY_POOL_ID",
+                "Region": "us-east-1"
+            }
+        }
+    },
+    "CognitoUserPool": {
+        "Default": {
+            "PoolId": "YOUR_COGNITO_USER_POOL_ID",
+            "AppClientId": "YOUR_COGNITO_APP_CLIENT_ID",
+            "AppClientSecret": "YOUR_COGNITO_APP_CLIENT_SECRET",
+            "Region": "us-east-1"
+        }
+    },
+    "Auth": {
+        "Default": {
+            "OAuth": {
+                "WebDomain": "YOUR_COGNITO_DOMAIN.auth.us-east-1.amazoncognito.com",
+                "AppClientId": "YOUR_COGNITO_APP_CLIENT_ID",
+                "SignInRedirectURI": "capybaragym://signin",
+                "SignOutRedirectURI": "capybaragym://signout",
+                "Scopes": ["openid", "email", "profile"]
+            },
+            "authenticationFlowType": "USER_SRP_AUTH"
+        }
+    },
+    "S3TransferUtility": {
+        "Default": {
+            "Bucket": "YOUR_S3_BUCKET_NAME",
+            "Region": "us-east-1"
+        }
+    }
+}
