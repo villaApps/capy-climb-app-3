@@ -1,0 +1,158 @@
+{
+  "configurations": [
+    {
+      "id": "UnitTestConfiguration",
+      "name": "Unit Tests",
+      "options": {
+        "testRepetitionMode": "none",
+        "testTimeoutsEnabled": true,
+        "defaultTestExecutionTimeAllowance": 60,
+        "maximumTestExecutionTimeAllowance": 120,
+        "testExecutionOrdering": "random",
+        "uiTestingScreenshotsLifetime": "keepNever"
+      }
+    },
+    {
+      "id": "UITestConfiguration",
+      "name": "UI Tests",
+      "options": {
+        "testRepetitionMode": "none",
+        "testTimeoutsEnabled": true,
+        "defaultTestExecutionTimeAllowance": 300,
+        "maximumTestExecutionTimeAllowance": 600,
+        "testExecutionOrdering": "random",
+        "uiTestingScreenshotsLifetime": "keepAlways",
+        "preferredScreenCaptureFormat": "screenshot"
+      }
+    },
+    {
+      "id": "CoverageConfiguration",
+      "name": "Code Coverage",
+      "options": {
+        "codeCoverage": {
+          "enabled": true,
+          "targets": [
+            {
+              "containerPath": "container:",
+              "identifier": "CapybaraGym",
+              "name": "CapybaraGym"
+            }
+          ]
+        },
+        "testRepetitionMode": "none",
+        "testTimeoutsEnabled": true,
+        "defaultTestExecutionTimeAllowance": 60,
+        "maximumTestExecutionTimeAllowance": 120
+      }
+    },
+    {
+      "id": "PerformanceConfiguration",
+      "name": "Performance Tests",
+      "options": {
+        "testRepetitionMode": "fixedIterations",
+        "testRepetitionIterations": 5,
+        "testTimeoutsEnabled": true,
+        "defaultTestExecutionTimeAllowance": 300,
+        "maximumTestExecutionTimeAllowance": 600
+      }
+    }
+  ],
+  "defaultOptions": {
+    "codeCoverage": {
+      "enabled": false
+    },
+    "environmentVariableEntries": [
+      {
+        "key": "TEST_ENVIRONMENT",
+        "value": "ci"
+      },
+      {
+        "key": "AMPLIFY_ENV",
+        "value": "test"
+      }
+    ],
+    "language": "en",
+    "region": "US",
+    "testRepetitionMode": "none",
+    "testTimeoutsEnabled": true,
+    "defaultTestExecutionTimeAllowance": 60,
+    "maximumTestExecutionTimeAllowance": 120,
+    "testExecutionOrdering": "random",
+    "uiTestingScreenshotsLifetime": "keepOnlyFailed"
+  },
+  "testTargets": [
+    {
+      "target": {
+        "containerPath": "container:",
+        "identifier": "CapybaraGymTests",
+        "name": "CapybaraGymTests"
+      },
+      "tests": [
+        {
+          "identifier": "SignInViewModelTests",
+          "name": "Sign In ViewModel Tests"
+        },
+        {
+          "identifier": "SignUpViewModelTests",
+          "name": "Sign Up ViewModel Tests"
+        },
+        {
+          "identifier": "HomeViewModelTests",
+          "name": "Home ViewModel Tests"
+        },
+        {
+          "identifier": "PassManagementViewModelTests",
+          "name": "Pass Management ViewModel Tests"
+        },
+        {
+          "identifier": "QRCodeViewModelTests",
+          "name": "QR Code ViewModel Tests"
+        },
+        {
+          "identifier": "ProfileViewModelTests",
+          "name": "Profile ViewModel Tests"
+        },
+        {
+          "identifier": "AuthServiceTests",
+          "name": "Auth Service Tests"
+        },
+        {
+          "identifier": "GymServiceTests",
+          "name": "Gym Service Tests"
+        },
+        {
+          "identifier": "PassServiceTests",
+          "name": "Pass Service Tests"
+        },
+        {
+          "identifier": "DesignSystemTests",
+          "name": "Design System Tests"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "target": {
+        "containerPath": "container:",
+        "identifier": "CapybaraGymUITests",
+        "name": "CapybaraGymUITests"
+      },
+      "tests": [
+        {
+          "identifier": "AuthenticationFlowTests",
+          "name": "Authentication Flow Tests"
+        },
+        {
+          "identifier": "PassManagementFlowTests",
+          "name": "Pass Management Flow Tests"
+        },
+        {
+          "identifier": "QRCodeFlowTests",
+          "name": "QR Code Flow Tests"
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "version": 1
+}

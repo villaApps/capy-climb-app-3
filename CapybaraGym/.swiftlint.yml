@@ -1,0 +1,257 @@
+# ============================================
+# Capybara Gym - SwiftLint Configuration
+# ============================================
+
+# Exclude paths from linting
+excluded:
+  - .build
+  - .swiftpm
+  - DerivedData
+  - build
+  - Pods
+  - Carthage
+  - fastlane
+  - docs
+  - Tests/Mocks
+  - Resources
+  - "**/Generated/*.swift"
+
+# Include only specific paths (optional, uncomment to use)
+# included:
+#   - Sources
+
+# Rules to disable
+disabled_rules:
+  - trailing_whitespace
+  - todo
+  - mark
+
+# Opt-in rules
+opt_in_rules:
+  - array_init
+  - attributes
+  - closure_end_indentation
+  - closure_spacing
+  - collection_alignment
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - contains_over_first_not_nil
+  - contains_over_range_nil_comparison
+  - discouraged_object_literal
+  - empty_collection_literal
+  - empty_count
+  - empty_string
+  - enum_case_associated_values_count
+  - explicit_init
+  - extension_access_modifier
+  - fallthrough
+  - fatal_error_message
+  - file_header
+  - file_name
+  - first_where
+  - flatmap_over_map_reduce
+  - force_unwrapping
+  - identical_operands
+  - implicit_return
+  - implicitly_unwrapped_optional
+  - joined_default_parameter
+  - last_where
+  - legacy_random
+  - let_var_whitespace
+  - literal_expression_end_indentation
+  - lower_acl_than_parent
+  - missing_docs
+  - modifier_order
+  - multiline_arguments
+  - multiline_function_chains
+  - multiline_literal_brackets
+  - multiline_parameters
+  - multiline_parameters_brackets
+  - nimble_operator
+  - nslocalizedstring_key
+  - number_separator
+  - object_literal
+  - operator_usage_whitespace
+  - overridden_super_call
+  - override_in_extension
+  - pattern_matching_keywords
+  - prefer_self_type_over_type_of_self
+  - private_action
+  - private_outlet
+  - prohibited_super_call
+  - quick_discouraged_call
+  - quick_discouraged_focused_test
+  - quick_discouraged_pending_test
+  - reduce_into
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - required_enum_case
+  - single_test_class
+  - sorted_first_last
+  - sorted_imports
+  - static_operator
+  - strict_fileprivate
+  - switch_case_on_newline
+  - toggle_bool
+  - trailing_closure
+  - unavailable_function
+  - unneeded_parentheses_in_closure_argument
+  - untyped_error_in_catch
+  - vertical_parameter_alignment_on_call
+  - vertical_whitespace_closing_braces
+  - vertical_whitespace_opening_braces
+  - xct_specific_matcher
+  - yoda_condition
+
+# Rule configurations
+line_length:
+  warning: 120
+  error: 150
+  ignores_urls: true
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_interpolated_strings: true
+
+file_length:
+  warning: 400
+  error: 500
+  ignore_comment_only_lines: true
+
+function_body_length:
+  warning: 60
+  error: 100
+
+function_parameter_count:
+  warning: 5
+  error: 8
+
+type_body_length:
+  warning: 300
+  error: 400
+
+type_name:
+  min_length:
+    warning: 3
+    error: 2
+  max_length:
+    warning: 40
+    error: 50
+  excluded:
+    - ID
+    - UI
+    - URL
+    - QR
+
+identifier_name:
+  min_length:
+    warning: 2
+    error: 1
+  max_length:
+    warning: 40
+    error: 50
+  excluded:
+    - id
+    - x
+    - y
+    - i
+    - j
+    - k
+    - qr
+    - ui
+    - url
+    - ok
+    - up
+    - db
+
+nesting:
+  type_level:
+    warning: 2
+    error: 3
+  statement_level:
+    warning: 5
+    error: 10
+
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+  ignores_case_statements: true
+
+reporter: "xcode"
+
+# Custom rules
+custom_rules:
+  # Prevent using print() in production code
+  no_print:
+    name: "No Print"
+    regex: "(?<!Swift\\.)print\\("
+    message: "Use Logger instead of print()"
+    severity: warning
+    
+  # Prevent using debugPrint() in production code
+  no_debug_print:
+    name: "No Debug Print"
+    regex: "debugPrint\\("
+    message: "Use Logger instead of debugPrint()"
+    severity: warning
+    
+  # Prevent using NSLocalizedString without comment
+  localized_string_comment:
+    name: "Localized String Comment"
+    regex: "NSLocalizedString\\([^,]+\\s*,\\s*comment:\\s*\"\"\\s*\\)"
+    message: "NSLocalizedString should have a meaningful comment"
+    severity: warning
+    
+  # Prefer using .isEmpty over .count == 0
+  prefer_is_empty:
+    name: "Prefer isEmpty"
+    regex: "\\.count\\s*==\\s*0"
+    message: "Prefer using .isEmpty over .count == 0"
+    severity: warning
+    
+  # Prevent force unwrapping in non-test files
+  no_force_unwrap:
+    name: "No Force Unwrap"
+    regex: "(!\\s*$|as!|try!)"
+    message: "Avoid force unwrapping. Use optional binding or nil coalescing instead."
+    severity: error
+    excluded:
+      - "*Tests.swift"
+      - "*Test.swift"
+      - "Test*.swift"
+      
+  # Ensure proper documentation for public APIs
+  public_api_documentation:
+    name: "Public API Documentation"
+    regex: "^\\s*public\\s+(?:class|struct|enum|protocol|func|var|let|init)"
+    message: "Public APIs should be documented"
+    severity: warning
+    match_kinds:
+      - keyword
+    
+  # Prevent using implicitly unwrapped optionals
+  no_implicitly_unwrapped_optional:
+    name: "No Implicitly Unwrapped Optional"
+    regex: "\\!\\s*:"
+    message: "Avoid using implicitly unwrapped optionals"
+    severity: warning
+    
+  # Prefer using Result type over throwing functions in async contexts
+  prefer_result_type:
+    name: "Prefer Result Type"
+    regex: "async\\s+throws"
+    message: "Consider using Result type for better error handling in async contexts"
+    severity: warning
+
+# Analyzer rules (requires --analyze flag)
+analyzer_rules:
+  - explicit_self
+  - unused_declaration
+  - unused_import
+
+# Reporter output format
+reporter: "xcode"
+
+# Use nested configurations
+# Use nested configurations from .swiftlint.yml files in subdirectories
+# child_config: .swiftlint.child.yml
+# parent_config: .swiftlint.parent.yml

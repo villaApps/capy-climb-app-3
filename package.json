@@ -1,0 +1,40 @@
+{
+  "name": "gym-membership-app-backend",
+  "version": "1.0.0",
+  "description": "AWS Amplify Gen 2 Backend for Gym Membership App",
+  "type": "module",
+  "scripts": {
+    "dev": "npx amplify dev",
+    "build": "npx amplify build",
+    "deploy": "npx amplify deploy",
+    "sandbox": "npx amplify sandbox",
+    "generate": "npx amplify generate",
+    "cleanup": "npx amplify cleanup",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "aws",
+    "amplify",
+    "gen2",
+    "gym",
+    "fitness",
+    "membership",
+    "backend"
+  ],
+  "author": "GymPass Team",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-amplify/backend": "^1.0.0",
+    "@aws-amplify/backend-cli": "^1.0.0",
+    "aws-amplify": "^6.0.0",
+    "aws-cdk-lib": "^2.140.0",
+    "constructs": "^10.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
